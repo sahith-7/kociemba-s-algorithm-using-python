@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Rubik's Cube</title>
+    <link rel="stylesheet" href="cube.css">
+    <!-- Three.js, OrbitControls, and RoundedBoxGeometry addon via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/RoundedBoxGeometry.js"></script>
+</head>
+<body>
+
+    <div id="ui">
+        <h1>Rubik's Cube</h1>
+        <p>Live Absolute HUD Edition</p>
+        <button id="scramble-btn">Scramble Cube</button>
+        <button id="solve-btn" onclick="solveCube()">Solve Cube</button>
+        <div id="solve-status"></div>
+    </div>
+
+    <!-- Left HUD Panel Showing All 6 Static Faces Simultaneously -->
+    <div id="faces-hud">
+        <div class="hud-title">All Faces View</div>
+        <div class="hud-grid">
+            <div class="hud-item"><span>Front</span><canvas id="face-front"></canvas></div>
+            <div class="hud-item"><span>Back</span><canvas id="face-back"></canvas></div>
+            <div class="hud-item"><span>Right</span><canvas id="face-right"></canvas></div>
+            <div class="hud-item"><span>Left</span><canvas id="face-left"></canvas></div>
+            <div class="hud-item"><span>Up</span><canvas id="face-up"></canvas></div>
+            <div class="hud-item"><span>Down</span><canvas id="face-down"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Camera-Relative Control Panel -->
+    <div id="control-panel">
+        <div class="panel-section">
+            <span class="label">Right (R)</span>
+            <button onclick="makeCameraRelativeMove('R', false)">R</button>
+            <button onclick="makeCameraRelativeMove('R', true)">R'</button>
+        </div>
+        <div class="panel-section">
+            <span class="label">Left (L)</span>
+            <button onclick="makeCameraRelativeMove('L', false)">L</button>
+            <button onclick="makeCameraRelativeMove('L', true)">L'</button>
+        </div>
+        <div class="panel-section">
+            <span class="label">Up (U)</span>
+            <button onclick="makeCameraRelativeMove('U', false)">U</button>
+            <button onclick="makeCameraRelativeMove('U', true)">U'</button>
+        </div>
+        <div class="panel-section">
+            <span class="label">Down (D)</span>
+            <button onclick="makeCameraRelativeMove('D', false)">D</button>
+            <button onclick="makeCameraRelativeMove('D', true)">D'</button>
+        </div>
+        <div class="panel-section">
+            <span class="label">Front (F)</span>
+            <button onclick="makeCameraRelativeMove('F', false)">F</button>
+            <button onclick="makeCameraRelativeMove('F', true)">F'</button>
+        </div>
+        <div class="panel-section">
+            <span class="label">Back (B)</span>
+            <button onclick="makeCameraRelativeMove('B', false)">B</button>
+            <button onclick="makeCameraRelativeMove('B', true)">B'</button>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <strong>Drag background</strong> to rotate view freely • Monitor all 6 static sides live on the left!
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <script src="cube.js"></script>
+</body>
+</html>
