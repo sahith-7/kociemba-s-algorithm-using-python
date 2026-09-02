@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Interactive 3D Rubik's Cube</title>
-    <link rel="stylesheet" href="cube.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Three.js, OrbitControls, and RoundedBoxGeometry addon via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -12,13 +12,21 @@
 </head>
 <body>
 
+    <div id="canvas-container"></div>
+
     <div id="ui">
         <h1>Rubik's Cube</h1>
         <p>Live Absolute HUD Edition</p>
-        <button id="scramble-btn">Scramble Cube</button>
-        <button id="solve-btn" onclick="solveCube()">Solve Cube</button>
+        <div class="ui-buttons">
+            <button id="scramble-btn">Scramble Cube</button>
+            <button id="solve-btn" onclick="solveCube()">Solve Cube</button>
+        </div>
         <div id="solve-status"></div>
     </div>
+
+    <!-- Mobile-only toggle for the Faces HUD drawer -->
+    <input type="checkbox" id="hud-toggle" class="hud-toggle-checkbox" hidden>
+    <label for="hud-toggle" id="hud-toggle-label">▦ Faces</label>
 
     <!-- Left HUD Panel Showing All 6 Static Faces Simultaneously -->
     <div id="faces-hud">
@@ -36,32 +44,32 @@
     <!-- Camera-Relative Control Panel -->
     <div id="control-panel">
         <div class="panel-section">
-            <span class="label">Right (R)</span>
+            <span class="label"><span class="label-full">Right (R)</span><span class="label-short">R</span></span>
             <button onclick="makeCameraRelativeMove('R', false)">R</button>
             <button onclick="makeCameraRelativeMove('R', true)">R'</button>
         </div>
         <div class="panel-section">
-            <span class="label">Left (L)</span>
+            <span class="label"><span class="label-full">Left (L)</span><span class="label-short">L</span></span>
             <button onclick="makeCameraRelativeMove('L', false)">L</button>
             <button onclick="makeCameraRelativeMove('L', true)">L'</button>
         </div>
         <div class="panel-section">
-            <span class="label">Up (U)</span>
+            <span class="label"><span class="label-full">Up (U)</span><span class="label-short">U</span></span>
             <button onclick="makeCameraRelativeMove('U', false)">U</button>
             <button onclick="makeCameraRelativeMove('U', true)">U'</button>
         </div>
         <div class="panel-section">
-            <span class="label">Down (D)</span>
+            <span class="label"><span class="label-full">Down (D)</span><span class="label-short">D</span></span>
             <button onclick="makeCameraRelativeMove('D', false)">D</button>
             <button onclick="makeCameraRelativeMove('D', true)">D'</button>
         </div>
         <div class="panel-section">
-            <span class="label">Front (F)</span>
+            <span class="label"><span class="label-full">Front (F)</span><span class="label-short">F</span></span>
             <button onclick="makeCameraRelativeMove('F', false)">F</button>
             <button onclick="makeCameraRelativeMove('F', true)">F'</button>
         </div>
         <div class="panel-section">
-            <span class="label">Back (B)</span>
+            <span class="label"><span class="label-full">Back (B)</span><span class="label-short">B</span></span>
             <button onclick="makeCameraRelativeMove('B', false)">B</button>
             <button onclick="makeCameraRelativeMove('B', true)">B'</button>
         </div>
@@ -71,8 +79,6 @@
         <strong>Drag background</strong> to rotate view freely • Monitor all 6 static sides live on the left!
     </div>
 
-    <div id="canvas-container"></div>
-
-    <script src="cube.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

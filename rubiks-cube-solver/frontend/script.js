@@ -1,3 +1,4 @@
+
 // Scene Setup
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -182,7 +183,7 @@ function makeCameraRelativeMove(faceType, isPrime = false) {
 // API, and animates the returned move list on the real cube.
 // ============================================================
 
-const SOLVER_API_URL = 'http://localhost:5001/solve';
+const SOLVER_API_URL = 'https://kociemba-s-algorithm-using-python-1.onrender.com/solve';
 
 // Map material hex color -> home-face letter (based on colorHexMap: which
 // face that color belongs to on a solved cube).
